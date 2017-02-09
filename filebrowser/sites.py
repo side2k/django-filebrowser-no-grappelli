@@ -337,7 +337,7 @@ class FileBrowserSite(object):
             'breadcrumbs': get_breadcrumbs(query, query.get('dir', '')),
             'breadcrumbs_title': "",
             'filebrowser_site': self
-        }, request), context_instance=Context(request, current_app=self.name))
+        }, request))
 
     def createdir(self, request):
         "Create Directory"
@@ -374,7 +374,7 @@ class FileBrowserSite(object):
             'breadcrumbs': get_breadcrumbs(query, query.get('dir', '')),
             'breadcrumbs_title': _(u'New Folder'),
             'filebrowser_site': self
-        }, request), context_instance=Context(request, current_app=self.name))
+        }, request))
 
     def upload(self, request):
         "Multipe File Upload."
@@ -388,7 +388,7 @@ class FileBrowserSite(object):
             'breadcrumbs': get_breadcrumbs(query, query.get('dir', '')),
             'breadcrumbs_title': _(u'Upload'),
             'filebrowser_site': self
-        }, request), context_instance=Context(request, current_app=self.name))
+        }, request))
 
     def delete_confirm(self, request):
         "Delete existing File/Directory."
@@ -422,7 +422,7 @@ class FileBrowserSite(object):
             'breadcrumbs': get_breadcrumbs(query, query.get('dir', '')),
             'breadcrumbs_title': _(u'Confirm delete'),
             'filebrowser_site': self
-        }, request), context_instance=Context(request, current_app=self.name))
+        }, request))
 
     def delete(self, request):
         "Delete existing File/Directory."
@@ -496,7 +496,7 @@ class FileBrowserSite(object):
             'breadcrumbs': get_breadcrumbs(query, query.get('dir', '')),
             'breadcrumbs_title': u'%s' % fileobject.filename,
             'filebrowser_site': self
-        }, request), context_instance=Context(request, current_app=self.name))
+        }, request))
 
     def version(self, request):
         """
@@ -512,7 +512,7 @@ class FileBrowserSite(object):
             'query': query,
             'settings_var': get_settings_var(directory=self.directory),
             'filebrowser_site': self
-        }, request), context_instance=Context(request, current_app=self.name))
+        }, request))
 
     def _upload_file(self, request):
         """
