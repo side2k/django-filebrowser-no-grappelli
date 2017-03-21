@@ -1,5 +1,12 @@
 from django import VERSION as DJANGO_VERSION
 from django.contrib.admin.sites import site as admin_site
+from django.template import RequestContext
+from django.shortcuts import render_to_response
+try:
+    from django.shortcuts import render as native_render
+except ImportError:
+    native_render = None
+
 
 __all__ = [
     'smart_text',
@@ -26,9 +33,17 @@ except ImportError:
 
 def admin_context(context, request):
     if DJANGO_VERSION >= (1, 8):
-        return dict(admin_site.each_context(request), **context)
+        return RequestContext(
+            request, dict(admin_site.each_context(request), **context))
 
     return context
+
+def render(request, template, context):
+    if DJANGO_VERSION >= (1, 10):
+        return native_render(request, template, context)
+
+    return render_to_response(template, admin_context(context, request))
+
 
 # django.conf.urls.patterns in django 1.9
 
